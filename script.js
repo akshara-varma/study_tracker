@@ -1,6 +1,15 @@
-let totalHours = 0;
-let streak = 0;
-let lastDate = null;
+let totalHours = localStorage.getItem("totalHours") 
+  ? Number(localStorage.getItem("totalHours")) 
+  : 0;
+
+let streak = localStorage.getItem("streak") 
+  ? Number(localStorage.getItem("streak")) 
+  : 0;
+
+let lastDate = localStorage.getItem("lastDate");
+
+document.getElementById("total").textContent = totalHours;
+document.getElementById("streak").textContent = streak;
 
 function addStudy() {
   const input = document.getElementById("hours");
@@ -24,8 +33,12 @@ function addStudy() {
   }
 
   lastDate = today;
-
   totalHours += hours;
+
+  // SAVE DATA 🔥
+  localStorage.setItem("totalHours", totalHours);
+  localStorage.setItem("streak", streak);
+  localStorage.setItem("lastDate", lastDate);
 
   document.getElementById("total").textContent = totalHours;
   document.getElementById("streak").textContent = streak;
