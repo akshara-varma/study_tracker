@@ -23,7 +23,7 @@ function addStudy() {
     const yesterday = new Date();
     yesterday.setDate(yesterday.getDate() - 1);
 
-    if (today === yesterday.toDateString()) {
+    if (lastDate === yesterday.toDateString()) {
       streak++;
     } else if (today !== lastDate) {
       streak = 1;
@@ -35,7 +35,7 @@ function addStudy() {
   lastDate = today;
   totalHours += hours;
 
-  // SAVE DATA 🔥
+  // SAVE DATA
   localStorage.setItem("totalHours", totalHours);
   localStorage.setItem("streak", streak);
   localStorage.setItem("lastDate", lastDate);
@@ -48,4 +48,11 @@ function addStudy() {
   document.getElementById("history").appendChild(li);
 
   input.value = "";
+
+  alert("Nice! Keep going 🔥");
+}
+
+function resetData() {
+  localStorage.clear();
+  location.reload();
 }
